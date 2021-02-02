@@ -57,12 +57,30 @@ class RegisterAPI(MethodView):
             return make_response(jsonify(responseObject)), 202
 
 
+class UserListAPI(MethodView):
+    def get(self):
+        user_arr = []
+        user = db.session.query(User.email)
+        for i in user:
+            user_arr.append(i[0])
+        return make_response(jsonify(user_arr)), 201
+
+
+
+
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
+userList_view = UserListAPI.as_view('userList_api')
 
 # add Rules for API Endpoints
 auth_blueprint.add_url_rule(
     '/auth/register',
     view_func=registration_view,
+    methods=['POST', 'GET']
+)
+
+auth_blueprint.add_url_rule(
+    '/users/index',
+    view_func=userList_view,
     methods=['POST', 'GET']
 )
