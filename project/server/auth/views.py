@@ -57,6 +57,9 @@ class RegisterAPI(MethodView):
             return make_response(jsonify(responseObject)), 202
 
 
+
+#code from https://github.com/adoval12/cs501_t1_diagnostic_test/blob/test/project/server/auth/views.py 
+# and https://github.com/aeram0/cs501_t1_diagnostic_test/blob/test/project/server/auth/views.py 
 class UserListAPI(MethodView):
     def get(self):
         user_arr = []
